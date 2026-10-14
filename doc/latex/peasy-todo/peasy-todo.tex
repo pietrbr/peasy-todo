@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{peasy-todo}
+
+\newcommand{\cs}[1]{\texttt{\textbackslash#1}}
+
+\title{The \textsf{peasy-todo} package\\\large v1.0}
+\author{Pietro Brach del Prever}
+\date{2026/10/14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  \textsf{peasy-todo} adds numbered, highlighted to-do and done notes to a document
+  and collects them in a list of to-dos. It is a modified version of
+  \textsf{easy-todo} by Juan Rada-Vilela.
+\end{abstract}
+
+\listoftodos
+
+\section{Usage}
+
+Load the package in the preamble:
+\begin{verbatim}
+\usepackage[<options>]{peasy-todo}
+\end{verbatim}
+
+\subsection{Commands}
+
+\begin{description}
+  \item[\cs{todo}\{\textit{note}\}] Prints a numbered red note and adds it to the
+    list of to-dos. Example: \todo{Add the missing figure.}
+  \item[\cs{todoi}\{\textit{note}\}] Prints only the number and adds the note to the
+    list. Example: \todoi{A note that shows only in the list.}
+  \item[\cs{done}\{\textit{note}\}] Prints a numbered blue note and adds it to the
+    list. Example: \done{Fix the caption.}
+  \item[\cs{todoii}{[\textit{color}]}\{\textit{note}\}\{\textit{list entry}\}] The
+    general form. The note and the list entry can differ. The color defaults to red.
+    Example: \todoii[magenta]{Short note.}{A longer entry for the list.}
+  \item[\cs{listoftodos}] Prints the list of to-dos.
+\end{description}
+
+The notes use \textsf{soul} for the highlight. Thus a note cannot contain commands
+that \textsf{soul} does not accept, for example \cs{gls} from \textsf{glossaries}.
+
+\subsection{Options}
+
+\begin{description}
+  \item[\texttt{enable}] Shows the notes and the list (default).
+  \item[\texttt{disable}] Hides the notes and the list.
+  \item[\texttt{obeyFinal}] Hides the notes and the list when the document class
+    gets the \texttt{final} option.
+  \item[\texttt{section}] Gives the list a \cs{section*} heading (default).
+  \item[\texttt{chapter}] Gives the list a \cs{chapter*} heading.
+\end{description}
+
+The commands \cs{todoenable}\{\texttt{true}|\texttt{false}\},
+\cs{todoobeyfinal}\{\texttt{true}|\texttt{false}\}, and
+\cs{todoindexas}\{\texttt{section}|\texttt{chapter}\} set the same values in the
+document body.
+
+\subsection{Customization}
+
+Redefine \cs{todoindextitle} (default \texttt{ToDo}) to change the list heading.
+Redefine \cs{todoindexpagetitle} (default \texttt{P.}) to change the page column
+heading. Redefine \cs{todocolor} (default \cs{color\{red\}}) to change the list color.
+
+\section{Dependencies}
+
+\textsf{color}, \textsf{tocloft}, \textsf{ifthen}, \textsf{ifdraft}, and
+\textsf{soul}.
+
+\section{License}
+
+Copyright \copyright{} 2026 Pietro Brach del Prever. Licensed under the Apache
+License, Version 2.0. Based on \textsf{easy-todo} (2014/01/01) by Juan
+Rada-Vilela, also under the Apache License, Version 2.0.
+
+\end{document}
